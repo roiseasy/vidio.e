@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Ready - VIDOI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0f0f0f;
+            color: white;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .download-container {
+            text-align: center;
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid #333;
+        }
+
+        .icon-box {
+            font-size: 60px;
+            color: #ff7a4a;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        p {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(45deg, #ff7a4a, #e66a3e);
+            color: white;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 14px;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(255, 122, 74, 0.3);
+            border: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 122, 74, 0.5);
+            background: linear-gradient(45deg, #e66a3e, #ff7a4a);
+        }
+
+        .file-info {
+            margin-top: 25px;
+            font-size: 12px;
+            color: #555;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .loader {
+            border: 4px solid #333;
+            border-top: 4px solid #ff7a4a;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        #preparing { display: block; }
+        #downloadArea { display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="download-container">
+        <div id="preparing">
+            <div class="loader"></div>
+            <h2>Menyiapkan File...</h2>
+            <p>Mohon tunggu sebentar, kami sedang memproses link download yang aman untuk Anda.</p>
+        </div>
+
+        <div id="downloadArea">
+            <div class="icon-box">
+                <i class="fas fa-file-video"></i>
+            </div>
+            <h2>File Siap!</h2>
+            <p>Terima kasih atas feedback Anda. Silakan klik tombol di bawah untuk mengunduh video.</p>
+            
+            <a href="video.mp4" download class="btn-download">
+                <i class="fas fa-cloud-download-alt"></i> DOWNLOAD MP4
+            </a>
+
+            <div class="file-info">
+                <span><i class="fas fa-check-circle"></i> High Quality</span>
+                <span><i class="fas fa-lock"></i> Secure Link</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulasi loading selama 3 detik
+        setTimeout(() => {
+            document.getElementById('preparing').style.display = 'none';
+            document.getElementById('downloadArea').style.display = 'block';
+        }, 3000);
+    </script>
+
+</body>
+</html>

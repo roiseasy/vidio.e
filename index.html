@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIDOI - Premium Video Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #0f0f0f;
+            color: white;
+            padding-bottom: 40px;
+        }
+
+        /* HEADER */
+        .header {
+            text-align: center;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: 800;
+            color: #ff7a4a;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        /* MAIN VIDEO CARD */
+        .main-card {
+            background: #1a1a1a;
+            border-radius: 18px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .thumb-container {
+            position: relative;
+            display: block;
+            cursor: pointer;
+        }
+
+        .thumb-container img {
+            width: 100%;
+            display: block;
+        }
+
+        .duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white !important;
+        }
+
+        .big-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .main-info {
+            padding: 15px;
+        }
+
+        .main-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 15px;
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        .stats-row span i {
+            margin-right: 4px;
+            color: #ff7a4a;
+        }
+
+        .btn-download {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px;
+            background: #ff7a4a;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-download:hover { background: #e66a3e; }
+
+        .section-title {
+            font-size: 18px;
+            margin: 25px 0 15px 5px;
+            color: #fff;
+            border-left: 4px solid #ff7a4a;
+            padding-left: 10px;
+        }
+
+        .video-item {
+            display: flex;
+            background: #1a1a1a;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.3s;
+            text-decoration: none;
+            color: white;
+        }
+
+        .video-item:hover {
+            background: #252525;
+            transform: translateY(-2px);
+        }
+
+        .side-thumb {
+            position: relative;
+            width: 140px;
+            min-width: 140px;
+            height: 80px;
+        }
+
+        .side-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .side-info {
+            padding: 8px 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .side-title {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .side-stats {
+            font-size: 11px;
+            color: #888;
+            display: flex;
+            gap: 8px;
+        }
+
+        .side-stats i { color: #ff7a4a; }
+
+        /* PAGINATION STYLES */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 30px;
+            padding: 10px;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            color: white;
+            background: #1a1a1a;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s;
+            border: 1px solid #333;
+        }
+
+        .pagination a:hover {
+            background: #ff7a4a;
+            border-color: #ff7a4a;
+        }
+
+        .pagination a.active {
+            background: #ff7a4a;
+            border-color: #ff7a4a;
+        }
+
+        .pagination .prev-next {
+            background: #252525;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">VIDOI</div>
+
+    <div class="container">
+        <div class="main-card">
+            <a href="login.html" class="thumb-container">
+                <img src="thumbnail.jpg" alt="Isi dengan nama file gambar kamu">
+                <div class="duration">12:45</div>
+                <div class="big-play"><i class="fas fa-play-circle"></i></div>
+            </a>
+            <div class="main-info">
+                <div class="main-title">Chudai</div>
+                <div class="stats-row">
+                    <span><i class="fas fa-eye"></i> 1.2M</span>
+                    <span><i class="fas fa-thumbs-up"></i> 45K</span>
+                    <span><i class="fas fa-cloud-download-alt"></i> 8.2K</span>
+                </div>
+                <a href="login.html" class="btn-download"><i class="fas fa-download"></i> DOWNLOAD MP4</a>
+            </div>
+        </div>
+
+        <div class="section-title">Video Terkait</div>
+
+        <a href="login.html" class="video-item">
+            <div class="side-thumb">
+                <img src="thumb2.jpg">
+                <div class="duration">05:20</div>
+                <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); opacity:0.8;"><i class="fas fa-play"></i></div>
+            </div>
+            <div class="side-info">
+                <div class="side-title">Hijab full percakapan setelah lamaran</div>
+                <div class="side-stats">
+                    <span><i class="fas fa-eye"></i> 850K</span>
+                    <span><i class="fas fa-thumbs-up"></i> 12K</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="login.html" class="video-item">
+            <div class="side-thumb">
+                <img src="thumb3.jpg">
+                <div class="duration">08:15</div>
+                <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); opacity:0.8;"><i class="fas fa-play"></i></div>
+            </div>
+            <div class="side-info">
+                <div class="side-title">Dipaksa om karena sendirian di rumah</div>
+                <div class="side-stats">
+                    <span><i class="fas fa-eye"></i> 2.1M</span>
+                    <span><i class="fas fa-thumbs-up"></i> 98K</span>
+                </div>
+            </div>
+        </a>
+
+        <div class="pagination">
+            <a href="login.html" class="prev-next"><i class="fas fa-chevron-left"></i></a>
+            <a href="login.html" class="active">1</a>
+            <a href="login.html">2</a>
+            <a href="login.html">3</a>
+            <a href="login.html">4</a>
+            <a href="login.html" class="prev-next"><i class="fas fa-chevron-right"></i></a>
+        </div>
+
+    </div>
+
+</body>
+</html>
